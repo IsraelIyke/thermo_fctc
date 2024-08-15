@@ -31,3 +31,26 @@ body {
     text-wrap: balance;
   }
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.button {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 2rem;
+  transition: ease-in-out 0.5s;
+}
+
+.button:hover {
+  height: 9rem;
+  width: 9rem;
+  font-weight: 400;
+  font-size: 1.8rem;
+}
