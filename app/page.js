@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/client";
 
 export default function Home() {
-  const [lightSwitch, setLightSwitch] = useState(false);
+  const [lightSwitch, setLightSwitch] = useState();
 
   function handleClick() {
     setLightSwitch((prev) => !prev);
@@ -26,11 +26,21 @@ export default function Home() {
   }
 
   async function sendData() {
-    const { data, error } = await supabase
-      .from("iot")
-      .update({ switch: lightSwitch })
-      .eq("id", "1")
-      .select();
+    try {
+      const { data, error } = await supabase
+        .from("iot")
+        .update({ switch: lightSwitch })
+        .eq("id", "1")
+        .select();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      let { data: iot, error } = await supabase
+        .from("iot")
+        .select("switch")
+        .eq("id", "1");
+      setLightSwitch(iot[0].switch);
+    }
   }
   return (
     <div className="container">
