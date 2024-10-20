@@ -49,6 +49,7 @@ export default function Display() {
 
   return (
     <>
+      <a href="/">Home</a>
       <div style={{ padding: "20px" }}>
         <h1>Submitted Contacts</h1>
         {contacts.length ? (

@@ -6,21 +6,20 @@ export default function Home() {
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
-    email: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { fullName, phoneNumber, email } = formData;
+    const { fullName, phoneNumber } = formData;
     const { data, error } = await supabase
 
       .from("contacts")
-      .insert([{ Name: fullName, Phone: phoneNumber, email }]);
+      .insert([{ Name: fullName, Phone: phoneNumber }]);
     if (error) {
       console.log("Error: ", error.message);
     } else {
       console.log("Data inserted:", data);
-      setFormData({ fullName: "", phoneNumber: "", email: "" }); // Reset form
+      setFormData({ fullName: "", phoneNumber: "" }); // Reset form
     }
     console.log("sent");
   };
@@ -52,15 +51,6 @@ export default function Home() {
             value={formData.phoneNumber}
             onChange={(e) =>
               setFormData({ ...formData, phoneNumber: e.target.value })
-            }
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
             }
             required
           />
