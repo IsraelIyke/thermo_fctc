@@ -50,6 +50,10 @@ export default function Display() {
   return (
     <>
       <a href="/">Home</a>
+
+      <button onClick={exportToExcel}>Export to Excel</button>
+      <button onClick={exportToVCard}>Export to vCard</button>
+
       <div style={{ padding: "20px" }}>
         <h1>Submitted Contacts</h1>
         {contacts.length ? (
@@ -72,8 +76,6 @@ export default function Display() {
         ) : (
           <p>No contacts found.</p>
         )}
-        <button onClick={exportToExcel}>Export to Excel</button>
-        <button onClick={exportToVCard}>Export to vCard</button>
       </div>
     </>
   );
