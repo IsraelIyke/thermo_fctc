@@ -7,6 +7,8 @@ export default function Home() {
     fullName: "",
     phoneNumber: "",
   });
+  const [submitted, setSubmitted] = useState(false);
+  const [notSubmitted, setNotSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +19,18 @@ export default function Home() {
       .insert([{ Name: fullName, Phone: phoneNumber }]);
     if (error) {
       console.log("Error: ", error.message);
+      setNotSubmitted((prev) => !prev);
+      setTimeout(() => {
+        setNotSubmitted((prev) => !prev);
+      }, 3000);
     } else {
       console.log("Data inserted:", data);
       setFormData({ fullName: "", phoneNumber: "" }); // Reset form
+      setSubmitted((prev) => !prev);
+      setTimeout(() => {
+        setSubmitted((prev) => !prev);
+      }, 3000);
     }
-    console.log("sent");
   };
 
   return (
@@ -54,7 +63,19 @@ export default function Home() {
             }
             required
           />
-          <button type="submit">Submit</button>
+          {notSubmitted ? (
+            <>
+              <button className="not-submitted">Check Network</button>
+            </>
+          ) : (
+            <>
+              {submitted ? (
+                <button className="submitted">Submitted</button>
+              ) : (
+                <button type="submit">Submit</button>
+              )}
+            </>
+          )}
         </form>
       </div>
     </>

@@ -45,7 +45,7 @@ nav {
 
 nav > h1 {
   font-weight: 900;
-  color: rgb(47, 255, 213);
+  color: white;
 }
 
 .form-container {
@@ -100,7 +100,12 @@ button {
   font-weight: 800;
   /* border: 1px solid rgb(47, 255, 213); */
 }
-
+.submitted {
+  background-color: rgb(47, 255, 213);
+}
+.not-submitted {
+  background-color: rgb(255, 147, 47);
+}
 @media screen and (max-width: 600px) {
   nav {
     height: 4.5rem;
