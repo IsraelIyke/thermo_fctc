@@ -87,7 +87,9 @@ input {
   border-radius: 0.5rem;
   margin: 1rem 0 1rem 0;
 }
-
+input:focus {
+  outline: none;
+}
 button {
   width: 40vw;
   background-color: white;
@@ -101,28 +103,22 @@ button {
 
 @media screen and (max-width: 600px) {
   nav {
-    height: 5rem;
-    width: 80vw;
-    background-color: rgb(23, 23, 23);
-    color: #fff;
-    border: 1px solid white;
-    display: flex;
-    align-items: center;
-    border-radius: 3rem;
-    margin-top: 2rem;
-    padding: 0 2rem 0 2rem;
+    height: 4.5rem;
+    width: 95vw;
+    border: 0.5px solid white;
   }
 
   .form-container {
-    margin-top: 5rem;
+    margin-top: 3rem;
     border: 0.5px solid white;
-    width: 90vw;
+    width: 95vw;
     padding-top: 3rem;
   }
 
   .form-container > h2 {
     padding: 0 0.5rem 1rem 0.5rem;
     text-align: center;
+    font-size: 0.8rem;
   }
 
   .form-container > h1 {
@@ -131,9 +127,9 @@ button {
   }
 
   input {
-    width: 80vw;
+    width: 90vw;
   }
   button {
-    width: 80vw;
+    width: 90vw;
   }
 }
