@@ -3,57 +3,84 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/client";
 
 export default function Home() {
-  const [lightSwitch, setLightSwitch] = useState();
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phoneNumber: "",
+    email: "",
+  });
 
-  function handleClick() {
-    setLightSwitch((prev) => !prev);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { fullName, phoneNumber, email } = formData;
+    const { data, error } = await supabase
 
-  useEffect(() => {
-    sendData();
-  }, [lightSwitch]);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  async function getData() {
-    let { data: iot, error } = await supabase
-      .from("iot")
-      .select("switch")
-      .eq("id", "1");
-    setLightSwitch(iot[0].switch);
-  }
-
-  async function sendData() {
-    try {
-      const { data, error } = await supabase
-        .from("iot")
-        .update({ switch: lightSwitch })
-        .eq("id", "1")
-        .select();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      let { data: iot, error } = await supabase
-        .from("iot")
-        .select("switch")
-        .eq("id", "1");
-      setLightSwitch(iot[0].switch);
+      .from("contacts")
+      .insert([{ Name: fullName, Phone: phoneNumber, email }]);
+    if (error) {
+      console.log("Error: ", error.message);
+    } else {
+      console.log("Data inserted:", data);
+      setFormData({ fullName: "", phoneNumber: "", email: "" }); // Reset form
     }
-  }
+    console.log("sent");
+  };
+
   return (
-    <div className="container">
-      <button
+    <>
+      {/* <Navbar /> */}
+
+      {/* <nav style={{ padding: "10px", backgroundColor: "#333", color: "#fff" }}>
+        <h1>My App</h1>
+      </nav> */}
+
+      <div style={{ padding: "20px" }}>
+        <h1>Submit Your Info</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            style={{ background: "black", height: "4rem" }}
+            type="text"
+            placeholder="Full Name"
+            value={formData.fullName}
+            onChange={(e) =>
+              setFormData({ ...formData, fullName: e.target.value })
+            }
+            required
+          />
+          <input
+            style={{ background: "black", height: "4rem" }}
+            type="tel"
+            placeholder="Phone Number"
+            value={formData.phoneNumber}
+            onChange={(e) =>
+              setFormData({ ...formData, phoneNumber: e.target.value })
+            }
+            required
+          />
+          <input
+            style={{ background: "black", height: "4rem" }}
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            required
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      {/* <Footer /> */}
+      <footer
         style={{
-          color: lightSwitch ? "green" : "red",
-          border: lightSwitch ? "1px solid green" : "1px solid red",
+          padding: "10px",
+          backgroundColor: "#333",
+          color: "#fff",
+          marginTop: "auto",
         }}
-        className="button"
-        onClick={handleClick}
       >
-        {lightSwitch ? "ON" : "OFF"}
-      </button>
-    </div>
+        <p>Footer Content</p>
+      </footer>
+    </>
   );
 }

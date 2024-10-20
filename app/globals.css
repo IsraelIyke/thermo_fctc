@@ -54,3 +54,119 @@ body {
   font-weight: 400;
   font-size: 1.8rem;
 }
+
+/* components/GrowingLine.module.css */
+
+.lineContainer {
+  position: absolute;
+  top: 0;
+  width: 100%; /* Full width of the container */
+  /* height: 100vh;  */
+  /* background-color: #f0f0f0; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;  */
+  outline: 1px solid lime;
+}
+
+.line {
+  position: absolute;
+
+  left: 0; /* Start from the left edge */
+  width: 0;
+  height: 2px;
+  background-color: white;
+  animation: growLine 3s ease forwards;
+}
+
+.line:first-of-type {
+  top: 48%; /* Position the first line at the center */
+}
+
+.line:last-of-type {
+  top: 40%; /* Position the second line slightly below the first one */
+  animation-delay: 3s; /* Delay the second line animation until the first one finishes */
+}
+
+@keyframes growLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%; /* The line grows to 80% of the container width */
+  }
+}
+
+/* components/GrowingLine.module.css */
+
+.lineContainer {
+  position: absolute;
+  width: 100%; /* Full width of the container */
+  height: 50vh; /* Full viewport height */
+  /* background-color: #f0f0f0; */
+  display: flex;
+  /* align-items: center;  */
+}
+
+.horizontalLine {
+  position: absolute;
+  left: 0; /* Start from the left edge */
+  width: 0;
+  height: 2px;
+  background-color: white;
+  animation: growHorizontal 3s ease forwards;
+}
+
+.verticalLine {
+  position: absolute;
+  left: 80%; /* Start from where the horizontal line ends */
+  /* top: 18.85rem; */
+  width: 2px;
+  height: 0;
+  background-color: white;
+  animation: growVertical 3s ease forwards;
+  animation-delay: 3s; /* Start after the horizontal line finishes */
+}
+
+@keyframes growHorizontal {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%; /* The line grows to 80% of the container width */
+  }
+}
+
+@keyframes growVertical {
+  from {
+    height: 0;
+  }
+  to {
+    height: 50vh; /* The line grows downwards to half the viewport height */
+  }
+}
+
+.imaged {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20rem;
+  width: 20rem;
+  z-index: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #222222;
+}
+
+circle,
+rect,
+line {
+  stroke-width: 5px;
+  stroke-linecap: round;
+  fill: transparent;
+}
