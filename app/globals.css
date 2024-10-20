@@ -18,12 +18,10 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 @layer utilities {
@@ -32,141 +30,110 @@ body {
   }
 }
 
-.container {
+nav {
+  height: 5rem;
+  width: 80vw;
+  background-color: rgb(23, 23, 23);
+  color: #fff;
+  border: 1px solid white;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  border-radius: 3rem;
+  margin-top: 2rem;
+  padding: 0 2rem 0 2rem;
 }
 
-.button {
-  height: 10rem;
-  width: 10rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  font-size: 2rem;
-  transition: ease-in-out 0.5s;
+nav > h1 {
+  font-weight: 900;
+  color: rgb(47, 255, 213);
 }
 
-.button:hover {
-  height: 9rem;
-  width: 9rem;
-  font-weight: 400;
-  font-size: 1.8rem;
-}
-
-/* components/GrowingLine.module.css */
-
-.lineContainer {
-  position: absolute;
-  top: 0;
-  width: 100%; /* Full width of the container */
-  /* height: 100vh;  */
-  /* background-color: #f0f0f0; */
+.form-container {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+  background-color: rgb(23, 23, 23);
+  border-radius: 1rem;
+  border: 1px solid white;
+  width: 50vw;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  /* justify-content: center;  */
-  outline: 1px solid lime;
+  justify-content: center;
+  padding-top: 3rem;
+}
+.form-container > h2 {
+  font-size: 0.95rem;
 }
 
-.line {
-  position: absolute;
-
-  left: 0; /* Start from the left edge */
-  width: 0;
-  height: 2px;
-  background-color: white;
-  animation: growLine 3s ease forwards;
+.form-container > h1 {
+  font-size: 1.95rem;
+  color: rgb(47, 255, 213);
+  font-weight: 800;
+  margin-bottom: 2rem;
 }
 
-.line:first-of-type {
-  top: 48%; /* Position the first line at the center */
-}
-
-.line:last-of-type {
-  top: 40%; /* Position the second line slightly below the first one */
-  animation-delay: 3s; /* Delay the second line animation until the first one finishes */
-}
-
-@keyframes growLine {
-  from {
-    width: 0;
-  }
-  to {
-    width: 80%; /* The line grows to 80% of the container width */
-  }
-}
-
-/* components/GrowingLine.module.css */
-
-.lineContainer {
-  position: absolute;
-  width: 100%; /* Full width of the container */
-  height: 50vh; /* Full viewport height */
-  /* background-color: #f0f0f0; */
-  display: flex;
-  /* align-items: center;  */
-}
-
-.horizontalLine {
-  position: absolute;
-  left: 0; /* Start from the left edge */
-  width: 0;
-  height: 2px;
-  background-color: white;
-  animation: growHorizontal 3s ease forwards;
-}
-
-.verticalLine {
-  position: absolute;
-  left: 80%; /* Start from where the horizontal line ends */
-  /* top: 18.85rem; */
-  width: 2px;
-  height: 0;
-  background-color: white;
-  animation: growVertical 3s ease forwards;
-  animation-delay: 3s; /* Start after the horizontal line finishes */
-}
-
-@keyframes growHorizontal {
-  from {
-    width: 0;
-  }
-  to {
-    width: 80%; /* The line grows to 80% of the container width */
-  }
-}
-
-@keyframes growVertical {
-  from {
-    height: 0;
-  }
-  to {
-    height: 50vh; /* The line grows downwards to half the viewport height */
-  }
-}
-
-.imaged {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20rem;
-  width: 20rem;
-  z-index: 0;
-}
-
-body {
+form {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
-  background: #222222;
+}
+input {
+  width: 40vw;
+  height: 3rem;
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  margin: 1rem 0 1rem 0;
 }
 
-circle,
-rect,
-line {
-  stroke-width: 5px;
-  stroke-linecap: round;
-  fill: transparent;
+button {
+  width: 40vw;
+  background-color: white;
+  height: 3rem;
+  color: black;
+  margin: 1rem 0 4rem 0;
+  border-radius: 0.5rem;
+  font-weight: 800;
+  /* border: 1px solid rgb(47, 255, 213); */
+}
+
+@media screen and (max-width: 600px) {
+  nav {
+    height: 5rem;
+    width: 80vw;
+    background-color: rgb(23, 23, 23);
+    color: #fff;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    border-radius: 3rem;
+    margin-top: 2rem;
+    padding: 0 2rem 0 2rem;
+  }
+
+  .form-container {
+    margin-top: 5rem;
+    border: 0.5px solid white;
+    width: 90vw;
+    padding-top: 3rem;
+  }
+
+  .form-container > h2 {
+    padding: 0 0.5rem 1rem 0.5rem;
+    text-align: center;
+  }
+
+  .form-container > h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  input {
+    width: 80vw;
+  }
+  button {
+    width: 80vw;
+  }
 }

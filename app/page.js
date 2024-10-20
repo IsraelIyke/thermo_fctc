@@ -29,15 +29,15 @@ export default function Home() {
     <>
       {/* <Navbar /> */}
 
-      {/* <nav style={{ padding: "10px", backgroundColor: "#333", color: "#fff" }}>
-        <h1>My App</h1>
-      </nav> */}
+      <nav>
+        <h1>FCTC</h1>
+      </nav>
 
-      <div style={{ padding: "20px" }}>
-        <h1>Submit Your Info</h1>
+      <div className="form-container">
+        <h1>Welcome</h1>
+        <h2>Thermodynamics: From confusion to clarity Contact Info Page</h2>
         <form onSubmit={handleSubmit}>
           <input
-            style={{ background: "black", height: "4rem" }}
             type="text"
             placeholder="Full Name"
             value={formData.fullName}
@@ -47,7 +47,6 @@ export default function Home() {
             required
           />
           <input
-            style={{ background: "black", height: "4rem" }}
             type="tel"
             placeholder="Phone Number"
             value={formData.phoneNumber}
@@ -57,7 +56,6 @@ export default function Home() {
             required
           />
           <input
-            style={{ background: "black", height: "4rem" }}
             type="email"
             placeholder="Email"
             value={formData.email}
@@ -69,18 +67,6 @@ export default function Home() {
           <button type="submit">Submit</button>
         </form>
       </div>
-
-      {/* <Footer /> */}
-      <footer
-        style={{
-          padding: "10px",
-          backgroundColor: "#333",
-          color: "#fff",
-          marginTop: "auto",
-        }}
-      >
-        <p>Footer Content</p>
-      </footer>
     </>
   );
 }

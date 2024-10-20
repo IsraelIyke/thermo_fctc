@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/client";
 import * as XLSX from "xlsx";
-import VCard from "vcf"; // Using the 'vcf' library for vCard creation
+// import VCard from "vcf"; // Using the 'vcf' library for vCard creation
+import VCard from "vcard-creator";
 
 export default function Display() {
   const [contacts, setContacts] = useState([]);
@@ -31,11 +32,12 @@ export default function Display() {
 
   const exportToVCard = () => {
     const vCards = contacts.map((contact) => {
-      const vcard = new VCard();
-      vcard.add("fn", contact.Name);
-      vcard.add("tel", contact.Phone);
-      vcard.add("email", contact.email);
-      return vcard.toString();
+      const vCard = new VCard();
+      vCard
+        .addName(contact.Name)
+        .addEmail(contact.email)
+        .addPhoneNumber(contact.Phone);
+      return vCard.toString();
     });
 
     const blob = new Blob(vCards, { type: "text/vcard" });
